@@ -19,7 +19,32 @@ object generic {
   //   = { String, Int, Boolean, List[String], List[Int], ... }
   // List does not belong in this set, but List[String], List[Int], List[Boolean], etc, does
 
+  // * => { the set of all types }
   // * => * = { x | is takes in a parameter that is a type }
   //        = { List, Option, Task, Future, ... }
+  // there is also
+  // (* => *) => * 
+  trait Functor[F[_]]
   // essentially a type constructor is a type level function!
+
+
+  // subtyping
+  // extends used to denote relationship between Dog and Animal
+  trait Animal {
+    def eat(): Unit = println("eat food")
+    def name(): String
+  }
+  trait Dog {
+    override def eat() = println("eat dog food!")
+    override def name() = "Dog"
+    def bark() = ???
+  }
+  val scotty = new Dog {
+    override def name() = "scotty"
+  }
+  def produce(): Animal = scotty
+  produce() // <--- widening (going from dog to Animal)
+  // NOTE:
+  // produce().bark() won't work!!!!
+  // produce().eat() will print "eat dog food!" despite being typed Animal
 }
