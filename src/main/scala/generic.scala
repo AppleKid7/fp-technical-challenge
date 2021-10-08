@@ -34,7 +34,7 @@ object generic {
     def eat(): Unit = println("eat food")
     def name(): String
   }
-  trait Dog {
+  trait Dog extends Animal {
     override def eat() = println("eat dog food!")
     override def name() = "Dog"
     def bark() = ???
@@ -47,4 +47,12 @@ object generic {
   // NOTE:
   // produce().bark() won't work!!!!
   // produce().eat() will print "eat dog food!" despite being typed Animal
+
+
+  // Question: UIO(throw new Error) // this is actually ZIO.succeed(throw new Error)
+  //  what is Chunk in ZIO?
+  // it is a safe array for FP. Like array doesn't box primitive.
+  //  effectful tail recursion?
+
+  
 }
